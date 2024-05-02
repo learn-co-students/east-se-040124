@@ -1,11 +1,6 @@
-import React, {useState} from "react";
+import { NavLink } from "react-router-dom";
 
 const Header = ({isDarkMode, onToggleDarkMode}) => {
-
-  //Update state when button is clicked
-  // const handleClick = () => {
-  //   setIsDarkMode(!isDarkMode)
-  // }
   
   function handleClick(){
     //Callback Function to update the parent state
@@ -17,6 +12,14 @@ const Header = ({isDarkMode, onToggleDarkMode}) => {
         <span className="logo">{"//"}</span>
         Project Showcase
       </h1>
+      <nav>
+        <NavLink to="/projects">
+          Projects
+        </NavLink>
+        <NavLink to="/projects/new">
+          New Project
+        </NavLink>
+      </nav>
       <button onClick={handleClick}>{isDarkMode ? "Light Mode" : "Dark Mode"}</button>
     </header>
   );

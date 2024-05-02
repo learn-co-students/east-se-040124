@@ -1,11 +1,15 @@
 import React, {useState} from "react";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
-const ProjectForm = ({onAddProject,projects}) => {
+const ProjectForm = () => {
   const [name, setName] = useState("")
   const [about, setAbout] = useState("")
   const [phase, setPhase] = useState("")
   const [link, setLink] = useState("")
   const [image, setImage] = useState("")
+
+  const { projects, onAddProject} = useOutletContext()
+  const navigate = useNavigate()
 
   function handleName(e){
     setName(e.target.value)
@@ -38,6 +42,8 @@ const ProjectForm = ({onAddProject,projects}) => {
       image: image
     }
     onAddProject(newProject)
+
+    // navigate(`/projects/${newProject.id}`)
 
   }
 

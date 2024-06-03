@@ -88,7 +88,7 @@ etc ...
 
 ## Static vs Dynamic Website
 
-- static website (doesn't change) is HTML, CSS, JS that acts as template for dynamic data coming into these pages
+- static website (doesn't change) is HTML, CSS, JS
 
 <img src="https://rochester.kidsoutandabout.com/sites/default/files/html_css_javascript.jpeg" width="600px" />
 

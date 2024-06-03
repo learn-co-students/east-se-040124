@@ -18,6 +18,7 @@
 
 <br />
 
+
 ---
 
 <br />
@@ -31,7 +32,7 @@
 
 <br />
 
-### 3. Create a `/longest-movies` route 
+### 3. Create a `/cats` route 
 #### 3a. Import `jsonify` and `make_response`
 #### 3b. Use the `route()` decorator
 #### 3c. Jsonify and return a response
@@ -42,7 +43,7 @@
 
 <br />
 
-### 4. Create a dynamic route `/productions/<string:title>` that searches for all matching records
+### 4. Create a dynamic route `/cats/<int:id>` that searches for all matching records
 #### 4a. Use the `route()` decorator
 #### 4b. Return a result as json
 

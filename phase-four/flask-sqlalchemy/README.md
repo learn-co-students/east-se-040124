@@ -200,3 +200,9 @@ def cats_by_id( id ):
         db.session.commit()
         return make_response( '', 204 )
 ```
+
+
+## Resources
+- [flask-migrate](https://flask-migrate.readthedocs.io/en/latest/)
+- [flask-sqlalchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/)
+- [with app.app_context](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.app_context)

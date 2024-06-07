@@ -1,6 +1,7 @@
 from config import db
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.orm import validates
 
 class Post(db.Model, SerializerMixin):
     __tablename__ = 'posts'
@@ -27,6 +28,12 @@ class User(db.Model, SerializerMixin):
     __table_args__ = (
         db.CheckConstraint('age > 12', name='old_enough'),
     )
+
+    @validates('name')
+    def validates_name(self, key, new_name):
+        if len(new_name) > 2:
+            return new_name
+        raise ValueError('Name must be greater than 2 characters.')
 
     comments = db.relationship('Comment', back_populates='user')
     commented_posts = association_proxy('comments', 'post')

@@ -60,6 +60,12 @@ class Users(Resource):
             db.session.commit()
         except IntegrityError as i_error:
             return make_response({'error': i_error._message()}, 422)
+        except ValueError as v_error:
+            return make_response({'error': str(v_error)}, 422)
+        except KeyError as k_error:
+            return make_response({'error': f'{str(k_error)} must be provided'}, 422)
+        except Exception as e:
+            return make_response({'error': 'Something went wrong'}, 422)
         return make_response(user.to_dict(), 201)
 
 api.add_resource(Users, '/users')

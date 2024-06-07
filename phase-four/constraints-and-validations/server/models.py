@@ -21,7 +21,12 @@ class User(db.Model, SerializerMixin):
     serialize_rules = ('-comments.user',)
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
+    name = db.Column(db.String, unique=True, nullable=False)
+    age = db.Column(db.Integer)
+
+    __table_args__ = (
+        db.CheckConstraint('age > 12', name='old_enough'),
+    )
 
     comments = db.relationship('Comment', back_populates='user')
     commented_posts = association_proxy('comments', 'post')

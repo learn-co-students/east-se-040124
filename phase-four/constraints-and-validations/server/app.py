@@ -1,8 +1,9 @@
 from flask import make_response, request
 from flask_restful import Resource
+from sqlalchemy.exc import IntegrityError
 
 from config import app, db, api
-from models import Post        
+from models import Post, User        
 
 class Posts(Resource):
     def get(self):
@@ -49,3 +50,16 @@ class PostById(Resource):
             return make_response({'message': "successfully deleted post"})
 
 api.add_resource(PostById, '/posts/<int:id>')
+
+class Users(Resource):
+    def post(self):
+        try:
+            params = request.json
+            user = User(name=params['name'], age=params['age'])
+            db.session.add(user)
+            db.session.commit()
+        except IntegrityError as i_error:
+            return make_response({'error': i_error._message()}, 422)
+        return make_response(user.to_dict(), 201)
+
+api.add_resource(Users, '/users')

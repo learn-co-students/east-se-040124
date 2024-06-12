@@ -21,7 +21,7 @@ function Auth({ setUser }) {
     }
 
     const handleSubmit = (values) => {
-        const endpoint = signup ? '/users' : '/login'
+        const endpoint = signup ? '/signup' : '/login'
         fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -76,7 +76,7 @@ function Auth({ setUser }) {
                         />
                     
                         {signup && <>
-                            <label htmlFor='phase'>Phase:</label>
+                            <label htmlFor='passwordConfirmation'>Password Confirmation:</label>
                             <input 
                                 id="passwordConfirmation" 
                                 name="passwordConfirmation"

@@ -5,8 +5,8 @@ import Header from "./components/Header"
 import Auth from "./components/Auth"
 
 function App() {
-  const [ darkMode, setDarkMode ] = useState(false)
-  const [loggedInUser, setLoggedInUser] = useState(null)
+  const [ darkMode, setDarkMode ] = useState(true)
+  const [ loggedInUser, setLoggedInUser ] = useState(null)
 
   function onDarkModeToggle() {
     setDarkMode(!darkMode)
@@ -15,6 +15,15 @@ function App() {
   function logoutUser() {
     setLoggedInUser(null)
   }
+
+  useEffect(() => {
+    fetch('/check_session')
+      .then((resp) => {
+        if (resp.ok) {
+          resp.json().then(user => setLoggedInUser(user))
+        }
+      })
+  }, [])
 
   const className = darkMode ? 'App' : 'App light'
 

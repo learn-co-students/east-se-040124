@@ -1,4 +1,4 @@
-# Authentication
+# Authorization
 ## Objectives
 - [ ] Review login and sign up flow
 - [ ] Review Identity Management (Authentication) and Access Management (Authorization)

@@ -46,7 +46,6 @@ class SignUp(Resource):
             user.password_hash = params.get('password')
             db.session.add(user)
             db.session.commit()
-            import ipdb; ipdb.set_trace()
             session['user_id'] = user.id
             return make_response(user.to_dict(), 201)
         except Exception as e:
@@ -90,4 +89,9 @@ class Login(Resource):
 
 api.add_resource(Login, '/login')
 
-# 6c. add user_id to session
+@app.before_request
+def check_authorized():
+    if (request.endpoint == 'checksession' or request.endpoint == 'projectbyid' or \
+            (request.endpoint == 'projects' and request.method == 'POST'))\
+             and not session.get('user_id'):
+        return make_response({'error': 'Unauthorized: Must login'}, 401)
